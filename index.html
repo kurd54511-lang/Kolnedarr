@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOLNEDAR FC | Official Website</title>
+    <style>
+        /* لۆگۆ و باکگراوندی جووڵاو بە ڕەسمی تۆپەوە */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            animation: bgMove 20s infinite alternate linear;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: center top; }
+            100% { background-position: center bottom; }
+        }
+
+        header {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+            padding: 40px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border-bottom: 3px solid #ffffff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: #121212;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+        }
+
+        .logo-icon {
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ffcc00;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        h2 {
+            color: #ffcc00;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* ستایلی بەشی خاڵەکان */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: #252525;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #444;
+        }
+
+        .stat-box h3 { margin: 0; color: #aaa; }
+        .stat-val { font-size: 2.5rem; font-weight: bold; color: #ffcc00; margin: 10px 0 0 0; }
+
+        /* مەرکەزی یاریزانان */
+        .player-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .player-card {
+            background: #252525;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid #444;
+            transition: 0.2s;
+        }
+
+        .player-card:hover {
+            background: #ffcc00;
+            color: #121212;
+        }
+
+        .captain-badge {
+            background: red;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* دوگمەی تیکتۆک */
+        .tiktok-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #010101, #ee1d52, #69c9d0);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* فۆرمی ڕەخنە و پێشنیار */
+        .feedback-form select, .feedback-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #252525;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background: #ffcc00;
+            color: #121212;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover { background: #ffffff; }
+
+        /* بەشی پەنێڵی ئەدمین */
+        .admin-section {
+            background: rgba(40, 40, 40, 0.95);
+            border: 2px dashed red;
+        }
+
+        .admin-controls { display: none; margin-top: 20px; text-align: right; }
+        .admin-controls input { padding: 8px; margin: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; }
+
+        .feedback-view {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-right: 4px solid #ffcc00;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-icon">⚽🏆</div>
+        <h1>تیپی لاوانی کۆڵنەدەر</h1>
+        <p>پێگەی فەرمی و مەرکەزی سەرەکی یاریزانان</p>
+    </header>
+
+    <div class="container">
+
+        <!-- بەشی خاڵەکانی تیپ -->
+        <div class="card">
+            <h2>📊 خاڵەکان و دۆخی تیپ</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>بردنەوە</h3>
+                    <p class="stat-val" id="team-wins">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>یەکسانبوون</h3>
+                    <p class="stat-val" id="team-draws">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>دۆڕاندن</h3>
+                    <p class="stat-val" id="team-losses">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- مەرکەزی یاریزانان -->
+        <div class="card">
+            <h2>👥 مەرکەزی یاریزانان</h2>
+            <p>کلیک لەسەر ناوی یاریزانەکە بکە بۆ بینینی گۆڵەکان</p>
+            <div class="player-list">
+                <div class="player-card" onclick="showPlayerGoals('ئاکار (کاپتن)')">
+                    <span class="captain-badge">کاپتن ⭐</span>
+                    <h3>ئاکار</h3>
+                    <p>گۆڵەکان: <span id="goal-akar">0</span></p>
+                    <!-- لێرە دەتوانیت لینکی تیکتۆکەکەی دابنێیت -->
+                    <a href="https://www.tiktok.com" target="_blank" class="tiktok-btn">🎵 تیکتۆکی کاپتن</a>
+                </div>
+                <div class="player-card" onclick="showPlayerGoals('یاریزان ٢')">
+                    <h3>یاریزان ٢</h3>
+                    <p>گۆڵەکان: <span id="goal-p2">0</span></p>
+                </div>
+                <div class="player-card" onclick="showPlayerGoals('یاریزان ٣')">
+                    <h3>یاریزان ٣</h3>
+                    <p>گۆڵەکان: <span id="goal-p3">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- فۆرمی ڕەخنە و پێشنیار بۆ بەکارهێنەران -->
+        <div class="card feedback-form">
+            <h2>✍️ ناردنی ڕەخنە و پێشنیار</h2>
+            <select id="feedback-type">
+                <option value="ڕەخنە">ڕەخنە</option>
+                <option value="پێشنیار">پێشنیار</option>
+            </select>
+            <textarea id="feedback-text" rows="4" placeholder="نووسینەکەت لێرە بنووسە..."></textarea>
+            <button class="btn" onclick="submitFeedback()">بنێرە</button>
+        </div>
+
+        <!-- 🔐 بەشی ئەدمین (تەنها بۆ خۆت بە پاسۆرد) -->
+        <div class="card admin-section">
+            <h2>🔐 کۆنترۆڵی ئەدمین (تەنها ئەحمەد)</h2>
+            <div id="login-box">
+                <input type="password" id="admin-pass" placeholder="پاسۆردی ئەدمین بنووسە" style="padding: 10px; border-radius: 5px; border: none; margin-left: 10px;">
+                <button class="btn" onclick="loginAdmin()">چوونەژوورەوە</button>
+            </div>
+
+            <div id="admin-panel" class="admin-controls">
+                <h3>🛠️ دەستکاری داتاکانی تیپ:</h3>
+                <label>بردنەوە: </label><input type="number" id="input-wins" value="0" onchange="updateStats()"><br>
+                <label>یەکسانبوون: </label><input type="number" id="input-draws" value="0" onchange="updateStats()"><br>
+                <label>دۆڕاندن: </label><input type="number" id="input-losses" value="0" onchange="updateStats()"><br>
+                
+                <h3>⚽ دەستکاری گۆڵی یاریزانان:</h3>
+                <label>گۆڵەکانی ئاکار: </label><input type="number" id="input-g-akar" value="0" onchange="updateStats()"><br>
+                <label>گۆڵەکانی یاریزان ٢: </label><input type="number" id="input-g-p2" value="0" onchange="updateStats()"><br>
+                <label>گۆڵەکانی یاریزان ٣: </label><input type="number" id="input-g-p3" value="0" onchange="updateStats()"><br>
+
+                <h3>📥 سندوقی ڕەخنە و پێشنیارەکان (تەنها تۆ دەیبینیت):</h3>
+                <div id="admin-feedback-list">
+                    <p style="color: #aaa;">هیچ نامەیەک نییە.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // سیستەمی ئەدمین و خەزنکردنی داتا لەسەر مۆبایل/ئایپادەکەت
+        function loginAdmin() {
+            const pass = document.getElementById('admin-pass').value;
+            if(pass === "1234") { // پاسۆردی فەرمی
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+                alert('بەخێرهاتی ئەحمەد گیان! پەنێڵی گۆڕانکاری چالاک بوو.');
+            } else {
+                alert('پاسۆردەکە هەڵەیە شێرەکەم!');
+            }
+        }
+
+        function updateStats() {
+            // گۆڕینی خاڵەکانی تیپ
+            document.getElementById('team-wins').innerText = document.getElementById('input-wins').value;
+            document.getElementById('team-draws').innerText = document.getElementById('input-draws').value;
+            document.getElementById('team-losses').innerText = document.getElementById('input-losses').value;
+
+            // گۆڕینی گۆڵەکان
+            document.getElementById('goal-akar').innerText = document.getElementById('input-g-akar').value;
+            document.getElementById('goal-p2').innerText = document.getElementById('input-g-p2').value;
+            document.getElementById('goal-p3').innerText = document.getElementById('input-g-p3').value;
+        }
+
+        function showPlayerGoals(name) {
+            alert("یاریزان: " + name + "\nهەموو زانیارییەکانی لای ڕاست نوێکراونەتەوە!");
+        }
+
+        // سیستەمی ناردنی پێشنیار و وەڵامدانەوە
+        let feedbackArr = [];
+        function submitFeedback() {
+            const type = document.getElementById('feedback-type').value;
+            const text = document.getElementById('feedback-text').value;
+
+            if(text.trim() === "") {
+                alert("تکایە سەرەتا شتێک بنووسە!");
+                return;
+            }
+
+            feedbackArr.push({type: type, text: text, reply: ""});
+            alert("ناردنەکە سەرکەوتوو بوو! تەنها ئەدمین دەیبینێت.");
+            document.getElementById('feedback-text').value = "";
+            renderFeedback();
+        }
+
+        function renderFeedback() {
+            const list = document.getElementById('admin-feedback-list');
+            list.innerHTML = "";
+            feedbackArr.forEach((item, index) => {
+                list.innerHTML += `
+                    <div class="feedback-view">
+                        <strong>[${item.type}]</strong>: ${item.text}
+                        <br>
+                        <small style="color:#ffcc00">وەڵامی تۆ: ${item.reply || "هێشتا جوابت نەداوەتەوە"}</small>
+                        <br>
+                        <input type="text" placeholder="وەڵام بنووسە..." id="reply-input-${index}" style="margin-top:5px; padding:5px;">
+                        <button onclick="submitReply(${index})" style="background:#ffcc00; border:none; padding:5px 10px; cursor:pointer; border-radius:3px;">ناردنی جواب</button>
+                    </div>
+                `;
+            });
+        }
+
+        function submitReply(index) {
+            const replyText = document.getElementById(`reply-input-${index}`).value;
+            if(replyText.trim() !== "") {
+                feedbackArr[index].reply = replyText;
+                alert("وەڵامەکەت خەزن کرا!");
+                renderFeedback();
+            }
+        }
+    </script>
+</body>
+</html>
